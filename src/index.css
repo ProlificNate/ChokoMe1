@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --dark-base: #242528;
+  --primary-accent: #D7CFFE;
+  --soft-highlight: #FDECBA;
+  --background: #D3E7EB;
+  --white: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--dark-base);
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#D7CFFE] text-[#242528] font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#D7CFFE];
+  }
+
+  .btn-secondary {
+    @apply bg-[#FDECBA] text-[#242528] font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-opacity-50 focus:ring-[#FDECBA];
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+
+  .input-field {
+    @apply w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#D7CFFE] focus:border-transparent;
+  }
+
+  .container-fluid {
+    @apply w-full px-4 mx-auto max-w-7xl;
+  }
+
+  .section {
+    @apply py-6 md:py-10;
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--primary-accent);
+  outline-offset: 2px;
+}
