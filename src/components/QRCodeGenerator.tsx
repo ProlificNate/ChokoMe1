@@ -2,18 +2,19 @@ import { useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 
 interface QRCodeGeneratorProps {
-  value: string;
   size?: number;
 }
 
-const QRCodeGenerator = ({ value, size = 200 }: QRCodeGeneratorProps) => {
+const QRCodeGenerator = ({ size = 200 }: QRCodeGeneratorProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const ussdCode = '*126*9*678105010*50000#';
+  const encodedUssdCode = `tel:${encodeURIComponent(ussdCode)}`;
 
   useEffect(() => {
     if (canvasRef.current) {
       QRCode.toCanvas(
         canvasRef.current,
-        value,
+        encodedUssdCode,
         {
           width: size,
           margin: 2,
@@ -27,14 +28,14 @@ const QRCodeGenerator = ({ value, size = 200 }: QRCodeGeneratorProps) => {
         }
       );
     }
-  }, [value, size]);
+  }, [encodedUssdCode, size]);
 
   return (
     <div>
       <canvas 
         ref={canvasRef} 
         className="rounded-md" 
-        aria-label={`QR code for ${value}`}
+        aria-label={`QR code for ${ussdCode}`}
       />
     </div>
   );
